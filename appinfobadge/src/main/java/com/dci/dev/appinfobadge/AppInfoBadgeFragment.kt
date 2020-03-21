@@ -30,6 +30,7 @@ import com.afollestad.materialdialogs.bottomsheets.setPeekHeight
 import com.afollestad.materialdialogs.callbacks.onShow
 import com.afollestad.materialdialogs.customview.customView
 import com.afollestad.materialdialogs.customview.getCustomView
+import com.afollestad.materialdialogs.lifecycle.lifecycleOwner
 import com.afollestad.recyclical.datasource.dataSourceTypedOf
 import com.afollestad.recyclical.setup
 import com.afollestad.recyclical.withItem
@@ -77,6 +78,8 @@ class AppInfoBadgeFragment : Fragment() {
                 WITH_RATER to withRater)
         }
     }
+
+    private val permissionsList = arrayListOf<PermissionItem>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -141,19 +144,7 @@ class AppInfoBadgeFragment : Fragment() {
             // App permissions
             containerAppPermissions.isVisible = withPermissions
             if (withPermissions) {
-                val permissionsList = arrayListOf<PermissionItem>()
-                val appPermissions = PermissionUtils.retrievePermissions(context!!).map {
-                    ctx.let { ctx ->
-                        PermissionUtils.getPermissionName(it, ctx)?.let { _name ->
-                            PermissionItem(
-                                name = _name,
-                                description = PermissionUtils.getPermissionDescription(it, ctx) ?: 0,
-                                isGranted = PermissionUtils.hasPermission(it, ctx)
-                            )
-                        }
-                    }
-                }
-                appPermissions.forEach { it?.let { permissionsList.add(it) } }
+                readPermissions(ctx)
                 val permissionsDataSource = dataSourceTypedOf(permissionsList)
                 ivAppPermissions.imageTintList = iconTint
                 tvAppPermissions.setTextColor(bodyTextColor)
@@ -162,6 +153,7 @@ class AppInfoBadgeFragment : Fragment() {
                         customView(R.layout.custom_view_permissions, noVerticalPadding = true)
                         cornerRadius(20f)
                         setPeekHeight(sheetPeek)
+                        lifecycleOwner(this@AppInfoBadgeFragment)
                     }
                     dialog.onShow {
                         val banner = it.getCustomView()
@@ -216,6 +208,7 @@ class AppInfoBadgeFragment : Fragment() {
                         customView(R.layout.custom_view_changelog, noVerticalPadding = true)
                         cornerRadius(20f)
                         setPeekHeight(sheetPeek)
+                        lifecycleOwner(this@AppInfoBadgeFragment)
                     }
                     dialog.onShow {
                         val banner = it.getCustomView()
@@ -251,6 +244,7 @@ class AppInfoBadgeFragment : Fragment() {
                         customView(R.layout.custom_view_licenses, noVerticalPadding = true)
                         cornerRadius(20f)
                         setPeekHeight(sheetPeek)
+                        lifecycleOwner(this@AppInfoBadgeFragment)
                     }
                     dialog.onShow {
                         val banner = it.getCustomView()
@@ -297,6 +291,7 @@ class AppInfoBadgeFragment : Fragment() {
                     customView(R.layout.custom_view_contact, noVerticalPadding = true)
                     cornerRadius(20f)
                     setPeekHeight(sheetPeek)
+                    lifecycleOwner(this@AppInfoBadgeFragment)
                 }
                 dialog.onShow {
                     val banner = it.getCustomView()
@@ -333,6 +328,20 @@ class AppInfoBadgeFragment : Fragment() {
                 }
             }
         }
+    }
+
+    private fun readPermissions(context: Context) {
+        permissionsList.clear()
+        val appPermissions = PermissionUtils.retrievePermissions(context).map {
+            PermissionUtils.getPermissionName(it, context)?.let { _name ->
+                PermissionItem(
+                    name = _name,
+                    description = PermissionUtils.getPermissionDescription(it, context) ?: 0,
+                    isGranted = PermissionUtils.hasPermission(it, context)
+                )
+            }
+        }
+        appPermissions.forEach { it?.let { permissionsList.add(it) } }
     }
 
     private object DefaultValues {
