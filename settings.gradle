@@ -1,0 +1,3 @@
+rootProject.name='AppInfoBadge'
+include ':app'
+include ':appinfobadge'

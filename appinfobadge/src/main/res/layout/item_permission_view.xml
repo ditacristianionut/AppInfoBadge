@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:padding="12dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <TextView
+        android:id="@+id/tvPermissionName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:textSize="17sp"
+        android:maxLines="2"
+        android:ellipsize="marquee"
+        android:textColor="@color/light_bg_dark_primary_text"
+        android:fontFamily="@font/lato_bold"
+        tools:text="@tools:sample/lorem"/>
+
+
+    <TextView
+        android:id="@+id/tvPermissionDetails"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:maxLines="6"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="12dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvPermissionName"
+        android:fontFamily="@font/lato_light"
+        android:textColor="@color/light_bg_dark_secondary_text"
+        tools:text="@tools:sample/lorem/random"/>
+
+    <TextView
+        android:id="@+id/tvGoToSettings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/lato_bold"
+        android:gravity="end"
+        android:maxLines="1"
+        android:text="SETTINGS"
+        android:textAlignment="viewEnd"
+        android:textColor="@color/purple_400"
+        android:textSize="11sp"
+        android:textStyle="bold"
+        android:layout_marginVertical="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvPermissionDetails" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
