@@ -9,6 +9,9 @@ A simple about screen library that can display the followinf information
  - PlayStore rate link
  - Contact page
 
+![](demo.gif)
+
+
 ## How to integrate
 - Add the jitpack.io repository:
 ```
