@@ -2,7 +2,7 @@
 
 # AppInfoBadge
 
-A simple about screen library that can display the followinf information
+A simple about screen library that can display the following information:
  - App permissions list
  - Licenses page
  - Changelog page
