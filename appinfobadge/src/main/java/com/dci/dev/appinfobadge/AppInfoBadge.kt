@@ -11,7 +11,8 @@ object AppInfoBadge {
     private var withChangelog: Boolean = true
     private var withEmail: String? = null
     private var withSite: String? = null
-    private var withLicenses: Boolean = true
+    private var withLicense: Boolean = true
+    private var withLibraries: Boolean = true
     private var withRater: Boolean = true
 
     /**
@@ -50,9 +51,14 @@ object AppInfoBadge {
     fun withSite(init: AppInfoBadge.() -> String?) = apply { withSite = init() }
 
     /**
-     * Show licenses item
+     * Show license item
      */
-    fun withLicenses(init: AppInfoBadge.() -> Boolean) = apply { withLicenses = init() }
+    fun withLicenses(init: AppInfoBadge.() -> Boolean) = apply { withLicense = init() }
+
+    /**
+     * Show libraries item
+     */
+    fun withLibraries(init: AppInfoBadge.() -> Boolean) = apply { withLibraries = init() }
 
     /**
      * Show app rating item
@@ -70,7 +76,8 @@ object AppInfoBadge {
         withChangelog,
         withEmail,
         withSite,
-        withLicenses,
+        withLicense,
+        withLibraries,
         withRater
     )
 

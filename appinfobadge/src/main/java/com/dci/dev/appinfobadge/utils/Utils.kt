@@ -3,6 +3,8 @@ package com.dci.dev.appinfobadge.utils
 import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageInfo
+import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Build
 import androidx.core.content.ContextCompat.startActivity
@@ -29,6 +31,18 @@ internal object Utils {
 
             startActivity(context, intent, null)
         }
+    }
+
+    fun getAppVersionName(context: Context): String {
+        var version: String = ""
+        try {
+            val pInfo: PackageInfo =
+                context.packageManager.getPackageInfo(context.packageName, 0)
+            version = pInfo.versionName
+        } catch (e: PackageManager.NameNotFoundException) {
+            e.printStackTrace()
+        }
+        return version
     }
 }
 

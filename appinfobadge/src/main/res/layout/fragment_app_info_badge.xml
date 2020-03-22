@@ -95,7 +95,7 @@
                         android:fontFamily="@font/lato_bold"
                         android:paddingVertical="12dp"
                         android:paddingStart="8dp"
-                        android:text="Trust badge"
+                        android:text="@string/trust_badge"
                         android:textColor="@color/light_bg_dark_primary_text"
                         android:textSize="18sp" />
 
@@ -103,48 +103,6 @@
 
                 <View
                     android:id="@+id/divider1"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:alpha="0.5"
-                    android:background="@color/grey_600"/>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/containerLicenses"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical"
-                    android:paddingVertical="8dp">
-
-                    <ImageView
-                        android:id="@+id/ivAppLicenses"
-                        android:layout_width="32dp"
-                        android:layout_height="32dp"
-                        android:padding="6dp"
-                        android:src="@drawable/ic_banner_licenses"/>
-
-                    <com.google.android.material.textview.MaterialTextView
-                        android:id="@+id/tvAppLicenses"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textSize="18sp"
-                        android:text="Licenses"
-                        android:paddingVertical="12dp"
-                        android:paddingStart="8dp"
-                        android:fontFamily="@font/lato_bold"
-                        android:textColor="@color/light_bg_dark_primary_text"/>
-
-                </LinearLayout>
-
-                <View
-                    android:id="@+id/divider2"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:alpha="0.5"
@@ -177,7 +135,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textSize="18sp"
-                        android:text="What's new"
+                        android:text="@string/what_s_new"
                         android:paddingVertical="12dp"
                         android:paddingStart="8dp"
                         android:fontFamily="@font/lato_bold"
@@ -187,6 +145,91 @@
 
                 <View
                     android:id="@+id/divider3"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:alpha="0.5"
+                    android:background="@color/grey_600"/>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/containerLicense"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:paddingVertical="8dp">
+
+                    <ImageView
+                        android:id="@+id/ivAppLicense"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:padding="6dp"
+                        android:src="@drawable/ic_banner_licenses"/>
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/tvAppLicense"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="18sp"
+                        android:text="@string/license"
+                        android:paddingVertical="12dp"
+                        android:paddingStart="8dp"
+                        android:fontFamily="@font/lato_bold"
+                        android:textColor="@color/light_bg_dark_primary_text"/>
+
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/divider2"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:alpha="0.5"
+                    android:background="@color/grey_600"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/containerLibraries"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:paddingVertical="8dp">
+
+                    <ImageView
+                        android:id="@+id/ivAppLibraries"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:padding="6dp"
+                        android:src="@drawable/ic_banner_libraries"/>
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/tvAppLibraries"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="18sp"
+                        android:text="@string/libraries"
+                        android:paddingVertical="12dp"
+                        android:paddingStart="8dp"
+                        android:fontFamily="@font/lato_bold"
+                        android:textColor="@color/light_bg_dark_primary_text"/>
+
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/divider6"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:alpha="0.5"
@@ -219,7 +262,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textSize="18sp"
-                        android:text="Rate me"
+                        android:text="@string/rate_me"
                         android:paddingVertical="12dp"
                         android:paddingStart="8dp"
                         android:fontFamily="@font/lato_bold"
@@ -261,7 +304,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textSize="18sp"
-                        android:text="Contact us"
+                        android:text="@string/contact"
                         android:paddingStart="8dp"
                         android:paddingVertical="12dp"
                         android:fontFamily="@font/lato_bold"

@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="permission_description">asdfsdhgoisdhvnjksdnfvposdnfvpnsdfvsdknvl</string>
+    <string name="trust_badge">Trust badge</string>
+    <string name="what_s_new">What\'s new</string>
+    <string name="license">License</string>
+    <string name="libraries">Libraries</string>
+    <string name="rate_me">Rate me</string>
+    <string name="contact">Contact</string>
+    <string name="app_version_name">Version %1$s</string>
 </resources>

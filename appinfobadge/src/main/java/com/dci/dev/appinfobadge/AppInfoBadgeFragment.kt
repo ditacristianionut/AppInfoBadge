@@ -19,6 +19,7 @@ import android.widget.TextView
 import androidx.annotation.ColorInt
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.os.bundleOf
+import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
@@ -53,7 +54,8 @@ class AppInfoBadgeFragment : Fragment() {
         private const val WITH_PERMISSIONS = "with_permissions"
         private const val WITH_EMAIL= "with_email"
         private const val WITH_SITE = "with_site"
-        private const val WITH_LICENSES = "with_licenses"
+        private const val WITH_LICENSE = "with_license"
+        private const val WITH_LIBRARIES = "with_libraries"
         private const val WITH_RATER = "with_rater"
 
         fun newInstance(
@@ -64,7 +66,8 @@ class AppInfoBadgeFragment : Fragment() {
             withChangelog: Boolean,
             withEmail: String?,
             withSite: String?,
-            withLicenses: Boolean,
+            withLicense: Boolean,
+            withLibraries: Boolean,
             withRater: Boolean) = AppInfoBadgeFragment().apply {
             arguments = bundleOf(
                 DARK_MODE to darkMode,
@@ -74,7 +77,8 @@ class AppInfoBadgeFragment : Fragment() {
                 WITH_CHANGELOG to withChangelog,
                 WITH_EMAIL to withEmail,
                 WITH_SITE to withSite,
-                WITH_LICENSES to withLicenses,
+                WITH_LICENSE to withLicense,
+                WITH_LIBRARIES to withLibraries,
                 WITH_RATER to withRater)
         }
     }
@@ -98,7 +102,8 @@ class AppInfoBadgeFragment : Fragment() {
             @ColorInt val headerColor = arguments?.getInt(HEADER_COLOR) ?: DefaultValues.headerColor(ctx)
             val withPermissions = arguments?.getBoolean(WITH_PERMISSIONS) ?: DefaultValues.withPermissions
             val withChangelog = arguments?.getBoolean(WITH_CHANGELOG) ?: DefaultValues.withChangelog
-            val withLicenses = arguments?.getBoolean(WITH_LICENSES) ?: DefaultValues.withLicenses
+            val withLicense = arguments?.getBoolean(WITH_LICENSE) ?: DefaultValues.withLicense
+            val withLibraries = arguments?.getBoolean(WITH_LIBRARIES) ?: DefaultValues.withLibraries
             val withRater = arguments?.getBoolean(WITH_RATER) ?: DefaultValues.withRater
             val withEmail = arguments?.getString(WITH_EMAIL) ?: DefaultValues.withEmail
             val withSite = arguments?.getString(WITH_SITE) ?: DefaultValues.withSite
@@ -123,6 +128,7 @@ class AppInfoBadgeFragment : Fragment() {
                     sheetPeek = view.height - header.height
                 }
             })
+            val versionName = Utils.getAppVersionName(ctx)
 
             // Header
             header.setBackgroundColor(headerColor)
@@ -137,7 +143,11 @@ class AppInfoBadgeFragment : Fragment() {
 
             // App name & version
             tvAppName.text = ctx.applicationInfo?.loadLabel(context!!.packageManager)
-            tvAppVersion.text = "Version ${BuildConfig.VERSION_NAME} (${BuildConfig.VERSION_CODE})"
+            if (versionName.isBlank()) {
+                tvAppVersion.isGone = true
+            } else {
+                tvAppVersion.text = getString(R.string.app_version_name, versionName)
+            }
             tvAppName.setTextColor(headerTextColor)
             tvAppVersion.setTextColor(headerTextColor)
 
@@ -234,14 +244,14 @@ class AppInfoBadgeFragment : Fragment() {
                 }
             }
 
-            // Licenses
-            containerLicenses.isVisible = withLicenses
-            if (withLicenses) {
-                ivAppLicenses.imageTintList = iconTint
-                tvAppLicenses.setTextColor(bodyTextColor)
-                tvAppLicenses.setOnClickListener {
-                    val dialog = MaterialDialog(context!!, BottomSheet()).show {
-                        customView(R.layout.custom_view_licenses, noVerticalPadding = true)
+            // License
+            containerLicense.isVisible = withLicense
+            if (withLicense) {
+                ivAppLicense.imageTintList = iconTint
+                tvAppLicense.setTextColor(bodyTextColor)
+                tvAppLicense.setOnClickListener {
+                    val dialog = MaterialDialog(ctx, BottomSheet()).show {
+                        customView(R.layout.custom_view_license, noVerticalPadding = true)
                         cornerRadius(20f)
                         setPeekHeight(sheetPeek)
                         lifecycleOwner(this@AppInfoBadgeFragment)
@@ -262,7 +272,43 @@ class AppInfoBadgeFragment : Fragment() {
                         } else {
                             webView.setBackgroundColor(Color.TRANSPARENT)
                         }
-                        webView.loadAsset("licenses.html", context!!.applicationContext, darkMode)
+                        webView.loadAsset("license.html", context!!.applicationContext, darkMode)
+                        val container = it.getCustomView()
+                            .findViewById<FrameLayout>(R.id.container)
+                        container.setBackgroundColor(bodyBackgroundColor)
+                    }
+                }
+            }
+
+            // Libraries
+            containerLibraries.isVisible = withLibraries
+            if (withLibraries) {
+                ivAppLibraries.imageTintList = iconTint
+                tvAppLibraries.setTextColor(bodyTextColor)
+                tvAppLibraries.setOnClickListener {
+                    val dialog = MaterialDialog(ctx, BottomSheet()).show {
+                        customView(R.layout.custom_view_libraries, noVerticalPadding = true)
+                        cornerRadius(20f)
+                        setPeekHeight(sheetPeek)
+                        lifecycleOwner(this@AppInfoBadgeFragment)
+                    }
+                    dialog.onShow {
+                        val banner = it.getCustomView()
+                            .findViewById<RoundedCornerImageView>(R.id.ivBannerBackground)
+                        banner.radius = RoundedCornerImageView.Radius(20.px, 20.px, 0.px, 0.px)
+                        banner.roundedCorners = RoundedCornerImageView.CORNER_ALL
+                        val webView: WebView = it.getCustomView()
+                            .findViewById<WebView>(R.id.web_view)
+                        webView.settings.javaScriptEnabled = true
+                        if (darkMode && WebViewFeature.isFeatureSupported(WebViewFeature.FORCE_DARK)) {
+                            WebSettingsCompat.setForceDark(
+                                webView.settings,
+                                WebSettingsCompat.FORCE_DARK_ON
+                            )
+                        } else {
+                            webView.setBackgroundColor(Color.TRANSPARENT)
+                        }
+                        webView.loadAsset("libraries.html", ctx.applicationContext, darkMode)
                         val container = it.getCustomView()
                             .findViewById<FrameLayout>(R.id.container)
                         container.setBackgroundColor(bodyBackgroundColor)
@@ -363,7 +409,8 @@ class AppInfoBadgeFragment : Fragment() {
         const val darkMode = false
         const val withPermissions = true
         const val withChangelog = true
-        const val withLicenses = true
+        const val withLicense = true
+        const val withLibraries = true
         const val withRater = true
         const val withAppIcon = true
         val withEmail: String? = null
