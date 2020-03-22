@@ -35,9 +35,14 @@ class MainActivity : AppCompatActivity() {
 
 		val randomDisplayBool = booleanArrayOf(true, false)
 
-		val fragment = AppInfoBadge.withChangelog { true }
+		val fragment = AppInfoBadge
+			.darkMode { true }
+			.withAppIcon { true }
 			.headerColor { resources.getColor(R.color.blue_900)}
 			.withPermissions { true }
+			.withChangelog { true }
+			.withLicenses { true }
+			.withRater { true }
 			.withEmail { "dita.cristian.ionut@gmail.com" }
 			.withSite { "https://www.abc.com" }
 			.show()
