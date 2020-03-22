@@ -4,7 +4,8 @@
 
 A simple about screen library that can display the following information:
  - App permissions list
- - Licenses page
+ - License page
+ - Libraries page
  - Changelog page
  - PlayStore rate link
  - Contact page
@@ -64,8 +65,21 @@ An HTML file named **changelog.html** that you have to put under ***assets***.
     </body>
 </html>
 ```
-#### Licenses
-An HTML file named **licenses.html** that you have to put under ***assets***.
+#### Libraries
+An HTML file named **libraries.html** that you have to put under ***assets***.
+##### Sample:
+```
+<html>
+    <body>
+        <ul>
+            <li><a href="https://github.com/ditacristianionut/AppInfoBadge">AppInfoBadge</a></li>
+            <li><a href="https://github.com/afollestad/material-dialogs">Material Dialogs</a></li>
+        </ul>
+    </body>
+</html>
+```
+#### License
+An HTML file named **license.html** that you have to put under ***assets***.
 ##### Sample:
 ```
 <html>
