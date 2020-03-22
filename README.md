@@ -13,8 +13,7 @@ A simple about screen library that can display the following information:
 ![](demo.gif)
 
 
-## How to integrate
-- Add the jitpack.io repository:
+## Download
 ```
 allprojects {
  repositories {
@@ -23,7 +22,6 @@ allprojects {
  } 
 }
 ```
-- then
 ```
 dependencies { 
   implementation 'com.github.ditacristianionut:AppInfoBadge:$version'
@@ -39,7 +37,8 @@ Use AppInfoBadge to create an instance of AppInfoBadgeFragment configured as you
   .withAppIcon { true }  
   .withPermissions { true }  
   .withChangelog { true }  
-  .withLicenses { true }  
+  .withLicense { true }  
+  .withLibraries { true }
   .withRater { true }  
   .withEmail { "developer@gmail.com" }  
   .withSite { "https://www.developer.com" }
