@@ -7,49 +7,57 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
-        android:id="@+id/header"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardHeader"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:minHeight="128dp"
-        android:orientation="vertical"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:padding="12dp"
-        android:background="@color/blue_900">
+        app:cardElevation="12dp">
 
-        <ImageView
-            android:id="@+id/ivAppIcon"
-            android:layout_width="56dp"
-            android:layout_height="56dp"
-            android:layout_marginTop="24dp"
-            tools:src="@tools:sample/avatars"/>
-
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tvAppName"
+        <LinearLayout
+            android:id="@+id/header"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingVertical="12dp"
-            android:textColor="@color/light_bg_dark_primary_text"
-            android:textSize="36sp"
-            app:fontFamily="@font/lato_bold"
-            tools:text="@tools:sample/lorem" />
+            android:minHeight="128dp"
+            android:orientation="vertical"
+            android:padding="12dp"
+            android:background="@color/blue_900">
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tvAppVersion"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="14sp"
-            tools:text="@tools:sample/lorem"
-            app:fontFamily="@font/lato"
-            android:textColor="@color/light_bg_dark_primary_text"/>
+            <ImageView
+                android:id="@+id/ivAppIcon"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:layout_marginTop="24dp"
+                tools:src="@tools:sample/avatars"/>
 
-    </LinearLayout>
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvAppName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingVertical="12dp"
+                android:textColor="@color/light_bg_dark_primary_text"
+                android:textSize="36sp"
+                app:fontFamily="@font/lato_bold"
+                tools:text="@tools:sample/lorem" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvAppVersion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                tools:text="@tools:sample/lorem"
+                app:fontFamily="@font/lato"
+                android:textColor="@color/light_bg_dark_primary_text"/>
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/header"
+        app:layout_constraintTop_toBottomOf="@+id/cardHeader"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 

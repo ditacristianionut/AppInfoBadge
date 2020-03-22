@@ -1,4 +1,4 @@
-package com.orange.ols.appinfobadge
+package com.dci.dev.appinfobadge
 
 import org.junit.Test
 

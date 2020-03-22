@@ -1,14 +1,12 @@
-package com.orange.ols.appinfobadge
+package com.dci.dev.appinfobadge
 
 import android.graphics.Color
-import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.res.ResourcesCompat
-import com.dci.dev.appinfobadge.AppInfoBadge
 import kotlinx.android.synthetic.main.activity_main.*
 import java.lang.reflect.Field
 
@@ -36,15 +34,15 @@ class MainActivity : AppCompatActivity() {
 		val randomDisplayBool = booleanArrayOf(true, false)
 
 		val fragment = AppInfoBadge
-			.darkMode { true }
+			.darkMode { false }
 			.withAppIcon { true }
 			.headerColor { resources.getColor(R.color.blue_900)}
 			.withPermissions { true }
 			.withChangelog { true }
 			.withLicenses { true }
 			.withRater { true }
-			.withEmail { "dita.cristian.ionut@gmail.com" }
-			.withSite { "https://www.abc.com" }
+			.withEmail { "dev.dci91@gmail.com" }
+			.withSite { "https://github.com/ditacristianionut/AppInfoBadge" }
 			.show()
 
 
@@ -61,8 +59,8 @@ class MainActivity : AppCompatActivity() {
 				.withChangelog { randomDisplayBool.random() }
 				.withLicenses { randomDisplayBool.random() }
 				.withRater { randomDisplayBool.random() }
-				.withEmail { "dita.cristian.ionut@gmail.com" }
-				.withSite { "https://www.abc.com" }
+                .withEmail { "dev.dci91@gmail.com" }
+                .withSite { "https://github.com/ditacristianionut/AppInfoBadge" }
 				.show()
 			supportFragmentManager.beginTransaction()
 				.replace(R.id.fragment, randomFragment)

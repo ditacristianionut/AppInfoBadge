@@ -323,6 +323,20 @@ class AppInfoBadgeFragment : Fragment() {
                     containerSite.isVisible = !withSite.isNullOrBlank()
                     if (!withSite.isNullOrBlank()) {
                         site.text = withSite
+                        when {
+                            withSite.contains("github", true) -> {
+                                iconSite.setImageResource(R.drawable.ic_contact_site_github)
+                            }
+                            withSite.contains("gitlab", true) -> {
+                                iconSite.setImageResource(R.drawable.ic_contact_site_gitlab)
+                            }
+                            withSite.contains("bitbucket", true) -> {
+                                iconSite.setImageResource(R.drawable.ic_contact_site_bitbucket)
+                            }
+                            withSite.contains("facebook", true) -> {
+                                iconSite.setImageResource(R.drawable.ic_contact_site_facebook)
+                            }
+                        }
                         iconSite.imageTintList = iconTint
                     }
                 }
