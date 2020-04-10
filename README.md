@@ -1,5 +1,6 @@
-[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-AppInfoBadge-brightgreen.svg?style=flat)](https://android-arsenal.com/details/1/8066)
 
+[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-AppInfoBadge-brightgreen.svg?style=flat)](https://android-arsenal.com/details/1/8066)
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/ditacristianionut/AppInfoBadge)
 # AppInfoBadge
 
 A simple about screen library that can display the following information:
@@ -7,14 +8,14 @@ A simple about screen library that can display the following information:
  - License page
  - Libraries page
  - Changelog page
- - PlayStore rate link
+ - PlayStore link
  - Contact page
 
 ![](demo.gif)
 
 
 ## Download
-```
+``` kotlin
 allprojects {
  repositories {
   jcenter() 
@@ -22,7 +23,7 @@ allprojects {
  } 
 }
 ```
-```
+``` kotlin
 dependencies { 
   implementation 'com.github.ditacristianionut:AppInfoBadge:$version'
 }
@@ -30,7 +31,7 @@ dependencies {
 
 ## How to use
 Use AppInfoBadge to create an instance of AppInfoBadgeFragment configured as you wish:
-```
+``` kotlin
  val aboutPage = AppInfoBadge  
   .darkMode { true }  
   .headerColor { Color.RED }  
@@ -42,7 +43,55 @@ Use AppInfoBadge to create an instance of AppInfoBadgeFragment configured as you
   .withRater { true }  
   .withEmail { "developer@gmail.com" }  
   .withSite { "https://www.developer.com" }
+  .withCustomItems { listOf<BaseInfoItem>() }
   .show()
+```
+
+#### Custom items
+Apart from the predefined items, you can inject your own list of items.
+There are two types of items:
+
+ - **InfoItemWithView** - when selected, a bottom sheet dialog with your own defined content is displayed
+ - **InfoItemWithLink** - when selected, a link defined by you is opened
+
+**InfoItemWithView** fields:
+ - ```iconId: Int``` - a drawable resource that is used on the main page and inside the bottom sheet dialog (header icon)
+ - ```title: String``` - the name of the item used on the main page 
+ - ```headerColor: Int```: - background color of the header
+ - ```res: Int?``` - a layout resouce that will be displayed on the bottom sheet dialog
+ - ```view: View?``` - a view that will be displayed on the bottom sheet dialog 	You can only use one of the *two*: res or *view*!
+
+**InfoItemWithLink** fields:
+ - ```iconId: Int``` - a drawable resource that is used on the main page and inside the bottom sheet dialog (header icon)
+ - ```title: String``` - the name of the item used on the main page 
+ - ```headerColor: Int```: - background color of the header
+ - ```link: Uri``` - the URI of the resource that will be open on item click
+##### Samples:
+``` kotlin
+val itemWithView = InfoItemWithView(  
+	 iconId = R.drawable.ic_test,  
+	 title = "First custom item with view",  
+	 headerColor = R.color.deep_purple_600,  
+     res = null,  
+     view = ImageView(this).also {  
+	     it.setImageResource(R.drawable.ic_link) 
+	  }  
+)  
+  
+val itemWithRes = InfoItemWithView(  
+ iconId = R.drawable.ic_test,  
+   title = "Second custom item with view",  
+   headerColor = R.color.indigo_600,  
+   res = R.layout.test_item,  
+   view = null  
+)  
+  
+val itemWithLink = InfoItemWithLink(  
+ iconId = R.drawable.ic_link,  
+   title = "Custom link",  
+   headerColor = R.color.deep_purple_600,  
+   link = Uri.parse("https://www.google.com")
+)
 ```
 
 #### Changelog
