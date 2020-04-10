@@ -17,13 +17,11 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.annotation.ColorInt
-import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.os.bundleOf
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
 import androidx.webkit.WebViewFeature
 import com.afollestad.materialdialogs.MaterialDialog
@@ -38,6 +36,7 @@ import com.dci.dev.appinfobadge.permissions.PermissionItem
 import com.dci.dev.appinfobadge.permissions.PermissionViewHolder
 import com.dci.dev.appinfobadge.utils.*
 import com.dci.dev.appinfobadge.view.BottomDialogContentView
+import com.dci.dev.appinfobadge.view.DividerItemDecoration
 import dev.jorgecastillo.androidcolorx.library.isDark
 import kotlinx.android.synthetic.main.fragment_app_info_badge.*
 import kotlin.math.roundToInt
@@ -142,6 +141,9 @@ class AppInfoBadgeFragment : Fragment() {
             else
                 ctx.resolveColor(R.color.grey_900)
             val iconTint = ColorStateList.valueOf(bodyTextColor)
+            val divider = DividerItemDecoration(
+                ctx, DividerItemDecoration.VERTICAL, false, darkMode
+            )
             header.viewTreeObserver.addOnGlobalLayoutListener(object : OnGlobalLayoutListener {
                 override fun onGlobalLayout() {
                     header.viewTreeObserver.removeOnGlobalLayoutListener(this)
@@ -336,7 +338,6 @@ class AppInfoBadgeFragment : Fragment() {
 
             // Body
             main?.setBackgroundColor(bodyBackgroundColor)
-
             val dataSource = dataSourceTypedOf(
                 defaultItems
             )
@@ -374,8 +375,6 @@ class AppInfoBadgeFragment : Fragment() {
                     }
                 }
             }
-            val divider = DividerItemDecoration(ctx, DividerItemDecoration.VERTICAL)
-            divider.setDrawable(ContextCompat.getDrawable(ctx, R.drawable.item_separator)!!)
             rvItems.addItemDecoration(divider)
 
             // App name & version
@@ -416,6 +415,5 @@ class AppInfoBadgeFragment : Fragment() {
         const val withAppIcon = true
         val withEmail: String? = null
         val withSite: String? = null
-        val customItems: List<BaseInfoItem> = emptyList()
     }
 }
