@@ -12,7 +12,6 @@
         android:id="@+id/tvPermissionName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:textSize="17sp"
@@ -29,7 +28,6 @@
         android:layout_height="wrap_content"
         android:maxLines="6"
         android:layout_marginTop="8dp"
-        android:layout_marginStart="12dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvPermissionName"
         android:fontFamily="@font/lato_light"
@@ -43,11 +41,21 @@
         android:fontFamily="@font/lato_bold"
         android:gravity="end"
         android:maxLines="1"
-        android:text="SETTINGS"
+        android:text="@string/settings"
         android:textAlignment="viewEnd"
         android:textColor="@color/purple_400"
         android:textSize="11sp"
         android:textStyle="bold"
+        android:layout_margin="8dp"
+        app:layout_constraintEnd_toStartOf="@+id/ivGoToSettings"
+        app:layout_constraintTop_toTopOf="@+id/ivGoToSettings"
+        app:layout_constraintBottom_toBottomOf="@+id/ivGoToSettings"/>
+
+    <ImageView
+        android:id="@+id/ivGoToSettings"
+        android:layout_width="12dp"
+        android:layout_height="12dp"
+        android:src="@drawable/ic_right_chevron"
         android:layout_marginVertical="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvPermissionDetails" />

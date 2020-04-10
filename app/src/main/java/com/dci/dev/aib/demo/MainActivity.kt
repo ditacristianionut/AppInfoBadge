@@ -1,11 +1,19 @@
 package com.dci.dev.aib.demo
 
 import android.graphics.Color
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
+import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.res.ResourcesCompat
 import com.dci.dev.appinfobadge.AppInfoBadge
+import com.dci.dev.appinfobadge.InfoItemWithLink
+import com.dci.dev.appinfobadge.InfoItemWithView
+import com.dci.dev.appinfobadge.utils.dp
+import com.dci.dev.appinfobadge.utils.px
 import kotlinx.android.synthetic.main.activity_main.*
 import java.lang.reflect.Field
 
@@ -31,8 +39,34 @@ class MainActivity : AppCompatActivity() {
 		}
 		val randomDisplayBool = booleanArrayOf(true, false)
 
+		val testItemWithView = InfoItemWithView(
+			iconId = R.drawable.ic_test,
+			title = "First custom item with view",
+			headerColor = R.color.deep_purple_600,
+			res = null,
+			view = ImageView(this).also {
+				it.setImageResource(R.drawable.ic_link)
+				it.layoutParams = ViewGroup.LayoutParams(128.px, 128.px)
+			}
+		)
+
+		val testItemWithRes = InfoItemWithView(
+			iconId = R.drawable.ic_chemistry,
+			title = "Second custom item with view",
+			headerColor = R.color.indigo_600,
+			res = R.layout.test_item,
+			view = null
+		)
+
+		val testLinkItem = InfoItemWithLink(
+			iconId = R.drawable.ic_link,
+			title = "Custom link",
+			headerColor = R.color.deep_purple_600,
+			link = Uri.parse("http://www.google.com")
+		)
+
 		val fragment = AppInfoBadge
-			.darkMode { false }
+			.darkMode { true }
 			.withAppIcon { true }
 			.headerColor { resources.getColor(R.color.red_600)}
 			.withPermissions { true }
@@ -42,6 +76,9 @@ class MainActivity : AppCompatActivity() {
 			.withRater { true }
 			.withEmail { "dev.dci91@gmail.com" }
 			.withSite { "https://github.com/ditacristianionut/AppInfoBadge" }
+			.withCustomItems {
+				listOf(testItemWithView, testItemWithRes, testLinkItem)
+			}
 			.show()
 
 

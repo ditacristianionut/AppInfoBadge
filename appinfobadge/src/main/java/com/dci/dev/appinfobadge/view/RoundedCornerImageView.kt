@@ -16,7 +16,7 @@ import com.dci.dev.appinfobadge.utils.px
  * @see roundedCorners
  */
 @SuppressLint("AppCompatCustomView")
-internal class RoundedCornerImageView : ImageView {
+class RoundedCornerImageView : ImageView {
 
     /**
      * Specify the radius of the corners that will be rounded in pixels

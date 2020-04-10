@@ -301,6 +301,6 @@
     <color name="dark_bg_light_hint_text">#80FFFFFF</color>
 
     <color name="light_background">#FFFFFF</color>
-    <color name="dark_background">#1F2024</color>
+    <color name="dark_background">#121212</color>
 
 </resources>

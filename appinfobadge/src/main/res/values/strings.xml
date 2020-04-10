@@ -7,4 +7,5 @@
     <string name="rate_me">Rate me</string>
     <string name="contact">Contact</string>
     <string name="app_version_name">Version %1$s</string>
+    <string name="settings">SETTINGS</string>
 </resources>

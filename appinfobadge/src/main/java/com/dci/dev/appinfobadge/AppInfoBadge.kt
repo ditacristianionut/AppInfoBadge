@@ -14,6 +14,7 @@ object AppInfoBadge {
     private var withLicense: Boolean = true
     private var withLibraries: Boolean = true
     private var withRater: Boolean = true
+    internal var customItems: List<BaseInfoItem> = listOf()
 
     /**
      * Switch between dark or light mode
@@ -64,6 +65,11 @@ object AppInfoBadge {
      * Show app rating item
      */
     fun withRater(init: AppInfoBadge.() -> Boolean) = apply { withRater = init() }
+
+    /**
+     * Custom items
+     */
+    fun withCustomItems(init: AppInfoBadge.() -> List<BaseInfoItem>) = apply { customItems = init() }
 
     /**
      * Creates a new instance of [AppInfoBadgeFragment]
